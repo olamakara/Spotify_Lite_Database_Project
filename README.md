@@ -12,5 +12,7 @@ Oracle PL/SQL
 
 ## Technologia
 Python
+
 ORM - SQLAlchemy
+
 GUI - PyQt5
