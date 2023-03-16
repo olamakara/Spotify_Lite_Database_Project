@@ -1,15 +1,14 @@
 # Sklep Internetowy <wprowadź nazwę tutaj>
 
 ## Zespół
-Jurek Kacper
+Kacper Jurek
 
 Aleksandra Makara
 
 Piotr Sobczyński
 
 ## Rodzaj bazy
-<insert here>
+ORM; PL/SQL
 
 ## Technologia
-
-
+Python
