@@ -1,4 +1,4 @@
-# Spotify_Lite_Database_Project
+# Sklep Internetowy <wprowadź nazwę tutaj>
 
 ## Zespół
 Jurek Kacper
