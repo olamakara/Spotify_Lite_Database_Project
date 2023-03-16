@@ -1,6 +1,6 @@
 # Spotify_Lite_Database_Project
 
-# Zespół
+## Zespół
 Jurek Kacper
 
 Aleksandra Makara
