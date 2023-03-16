@@ -2,6 +2,8 @@
 
 # Zespół
 Jurek Kacper
+
 Ola Makara
+
 Piotr Sobczyński
 
