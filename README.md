@@ -16,3 +16,6 @@ Python
 ORM - SQLAlchemy
 
 GUI - PyQt5
+
+## Opis aplikacji
+Aplikacja będzie sklepem internetowym do sprzedawania i kupowania towarów. Będzie wspierała logowanie się na swoje konto, możliwość sprawdzenia sowich kupionych i sprzedawanych przedmiotów. Dla użytkowników dostępny będzie ogólny market wszystkich przedmiotów oraz możliwość sortowania ich po kategoriach.
