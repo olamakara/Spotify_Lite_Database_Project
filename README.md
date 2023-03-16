@@ -7,3 +7,9 @@ Aleksandra Makara
 
 Piotr Sobczyński
 
+## Rodzaj bazy
+MongoDB
+
+## Technologia
+
+
