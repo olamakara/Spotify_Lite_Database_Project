@@ -3,7 +3,7 @@
 # Zespół
 Jurek Kacper
 
-Ola Makara
+Aleksandra Makara
 
 Piotr Sobczyński
 
