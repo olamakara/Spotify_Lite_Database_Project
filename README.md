@@ -8,7 +8,7 @@ Aleksandra Makara
 Piotr Sobczyński
 
 ## Rodzaj bazy
-MongoDB
+<insert here>
 
 ## Technologia
 
