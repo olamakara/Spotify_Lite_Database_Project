@@ -12,4 +12,5 @@ ORM; PL/SQL
 
 ## Technologia
 Python
+
 GUI - PyQt5
