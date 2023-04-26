@@ -1,0 +1,19 @@
+.user-info {
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 100px;
+    margin: 50px 100px;
+}
+
+img {
+    max-width: 300px;
+}
+
+.info {
+    margin: auto 0;
+}
+
+.info div {
+    margin: 20px 0;
+    font-size: 1.3rem;
+}

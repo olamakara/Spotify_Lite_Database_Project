@@ -1,0 +1,7 @@
+app-menu-bar, .container {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    margin: 0 60px;
+}
