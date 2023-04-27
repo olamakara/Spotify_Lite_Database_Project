@@ -1,4 +1,4 @@
-# Sklep Internetowy <wprowadź nazwę tutaj>
+# Sklep Internetowy Alledro
 
 ## Zespół
 Kacper Jurek
