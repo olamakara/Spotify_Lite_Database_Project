@@ -11,7 +11,6 @@ Piotr Sobczyński
 Oracle PL/SQL
 
 ## Technologia
-Angular
 
 ORM - 
 
