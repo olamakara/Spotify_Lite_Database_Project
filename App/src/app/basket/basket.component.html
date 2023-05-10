@@ -1,10 +1,16 @@
 <h3>Koszyk</h3>
-<ng-container class="products-list" *ngFor="let item of tableData">
+<ng-container class="products-list" *ngFor="let item of cart_items">
     <div class="product">
         <div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Colourful_shopping_carts.jpg/1200px-Colourful_shopping_carts.jpg" alt="trolly">
+            <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Colourful_shopping_carts.jpg/1200px-Colourful_shopping_carts.jpg" alt="trolly"> -->
+            <img src={{item.product[0].image}} alt="product">
         </div>
-        <div>product info</div>
+        <div>
+            {{ item.product[0].name }} <br>
+            Ilość: {{ item.quantity }} <br>
+            Cena: {{ item.product[0].unit_price }} <br>
+            Razem: {{ item.product[0].unit_price * item.quantity }}
+        </div> 
         <div>
             <button>KUP</button>
         </div>

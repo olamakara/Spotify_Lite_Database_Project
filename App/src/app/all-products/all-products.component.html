@@ -1,9 +1,9 @@
 <h3>Wszystkie produkty</h3>
 <ng-container class="products-list" *ngFor="let product of products">
-    <div class="product">
+    <div class="product" [style.opacity]="product.quantity < 1 ? 0.5 : 1">
         <div>
             <!-- <img src="https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg" alt="cameras"> -->
-            <img src={{product.image}} alt="cameras">
+            <img src={{product.image}} alt="product">
         </div>
         <div>
             {{ product.name }} <br>
@@ -11,8 +11,9 @@
             Cena: {{ product.unit_price }}
         </div>
         <div>
-            <button><i class="fa-solid fa-plus"></i> </button>
-            <button><i class="fa-solid fa-minus"></i></button>
+            <button [disabled]="product.quantity < 1" (click)="updateQuantity(product._id, product.quantity - 1)"><i class="fa-solid fa-plus"></i> </button>
+            <button (click)="updateQuantity(product._id, product.quantity + 1)"><i class="fa-solid fa-minus"></i></button>  
+            <!-- na razie nie spr czy nie przekroczyło max ilosci produktu -->
         </div>
     </div>
 </ng-container>
