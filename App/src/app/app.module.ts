@@ -7,6 +7,10 @@ import { AllProductsComponent } from './all-products/all-products.component';
 import { BasketComponent } from './basket/basket.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import '../polyfill';
+import { CustomersListComponent } from './customers-list/customers-list.component'
 
 @NgModule({
   declarations: [
@@ -15,11 +19,13 @@ import { UserInfoComponent } from './user-info/user-info.component';
     AllProductsComponent,
     BasketComponent,
     PageNotFoundComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    CustomersListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

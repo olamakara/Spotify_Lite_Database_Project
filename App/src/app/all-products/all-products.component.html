@@ -1,10 +1,15 @@
 <h3>Wszystkie produkty</h3>
-<ng-container class="products-list" *ngFor="let item of tableData">
+<ng-container class="products-list" *ngFor="let product of products">
     <div class="product">
         <div>
-            <img src="https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg" alt="cameras">
+            <!-- <img src="https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg" alt="cameras"> -->
+            <img src={{product.image}} alt="cameras">
         </div>
-        <div>product info</div>
+        <div>
+            {{ product.name }} <br>
+            Ilość: {{ product.quantity }} <br>
+            Cena: {{ product.unit_price }}
+        </div>
         <div>
             <button><i class="fa-solid fa-plus"></i> </button>
             <button><i class="fa-solid fa-minus"></i></button>
