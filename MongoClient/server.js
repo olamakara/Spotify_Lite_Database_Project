@@ -60,9 +60,39 @@ app.get('/products', async (req, res) => {
 
     const productsCollection = client.db("OnlineShop").collection("products");
     const products = await productsCollection.find().toArray();
+    const count = await productsCollection.countDocuments();
+    
     console.log(products);
+    console.log(count);
 
-    res.json(products);
+    res.json({products, count});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
+app.get('/products/:user_id', async (req, res) => {
+  const user_id = req.params.user_id;
+  try {
+    await client.connect();
+    await client.db("OnlineShop").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const productsCollection = client.db("OnlineShop").collection("products");
+    const products = await productsCollection.find().toArray();
+    const count = await productsCollection.countDocuments();
+    const usersCollection = client.db("OnlineShop").collection("users");
+    const user = await usersCollection.find({_id: new ObjectId(user_id)}).toArray();
+    
+    console.log(products);
+    console.log(count);
+    console.log(user)
+
+    res.json({products, count, user});
 
   } catch (error) {
     console.error(error);
@@ -164,6 +194,146 @@ app.post('/cart_item', async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: 'Failed to create new customer.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.put('/users/:id', async (req, res) => {
+  console.log("cart post");
+  const id = req.params.id;
+  const basket_name = req.body.basket_name;
+  // const newCartItem = req.body;
+  const newBasketItem = {
+    product_id: new ObjectId(req.body._id),
+    name: req.body.name,
+    quantity: req.body.quantity,
+    price: req.body.price,
+    image: req.body.image,
+    seller_id: new ObjectId(req.body.seller_id)
+  };
+  console.log(newBasketItem);
+
+  try {
+    await client.connect();
+
+    const filter = {_id: new ObjectId(id), "baskets.basket": basket_name};
+    const update = {$push: {"baskets.$.products": newBasketItem}};
+    // const options = {arrayFilters: [{basket: "zabawki"}]};
+    const basketItemsCollection = client.db("OnlineShop").collection("users");
+    const result = await basketItemsCollection.updateOne(filter, update);
+    console.log(`${result.modifiedCount} document(s) updated`);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to add product to basket.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.put('/del_product/:basket', async (req, res) => {
+  console.log("cart post");
+  const user_id = req.body.user_id;
+  const product_id = req.body.product_id;
+  const basket = req.params.basket;
+
+  try {
+    await client.connect();
+
+    const filter = {_id: new ObjectId(user_id), "baskets.basket": basket};
+    const update = {$pull: {"baskets.$.products": {product_id: new ObjectId(product_id)}}};
+    // const options = {arrayFilters: [{basket: "zabawki"}]};
+    const usersCollection = client.db("OnlineShop").collection("users");
+    const result = await usersCollection.updateOne(filter, update);
+    console.log(`${result.modifiedCount} document(s) updated`);
+
+    const user = await usersCollection.find({_id: new ObjectId(user_id)}).toArray();
+    console.log(user);
+
+    res.json(user);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to add product to basket.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.put('/del_basket', async (req, res) => {
+  console.log("delete basket");
+  const user_id = req.body.user_id;
+  const name = req.body.name;
+
+  try {
+    await client.connect();
+
+    const filter = {_id: new ObjectId(user_id), };
+    const update = {$pull: {baskets: {basket: name}}};
+    const usersCollection = client.db("OnlineShop").collection("users");
+    const result = await usersCollection.updateOne(filter, update);
+    console.log(`${result.modifiedCount} document(s) updated`);
+
+    const user = await usersCollection.find({_id: new ObjectId(user_id)}).toArray();
+    console.log(user);
+
+    res.json(user);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to add product to basket.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.put('/add_basket/:id', async (req, res) => {
+  console.log("cart post");
+  const user_id = req.params.id;
+  const basket_name = req.body.name;
+  const newBasket = {
+    basket: basket_name,
+    products: []
+  }
+
+  try {
+    await client.connect();
+
+    const filter = {_id: new ObjectId(user_id)};
+    const update = {$push: {baskets: newBasket}};
+    const usersCollection = client.db("OnlineShop").collection("users");
+    const result = await usersCollection.updateOne(filter, update);
+    console.log(`${result.modifiedCount} document(s) updated`);
+
+    const user = await usersCollection.find({_id: new ObjectId(user_id)}).toArray();
+    console.log(user);
+
+    res.json(user);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to add new basket.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.get('/users/:id', async (req, res) => {
+  console.log("weszlo");
+  const id = req.params.id;
+
+  try {
+    await client.connect();
+    const usersCollection = client.db("OnlineShop").collection("users");
+    const user = await usersCollection.find({ _id: new ObjectId(id) }).toArray();
+    console.log(user);
+
+    res.json(user);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   } finally {
     await client.close();
   }

@@ -46,3 +46,65 @@ button:hover {
 img {
     height: 100px;
 }
+
+span {
+    margin-right: 10px;
+}
+
+dialog {
+    top: 40%;
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choose {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+}
+
+.x {
+    text-align: end;
+}
+
+.x button {
+    margin: 0;
+    border: none;
+    background-color: white;
+    width: auto;
+    height: auto;
+    font-size: 1.1rem;
+}
+
+.baskets {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.baskets button {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #FC4F00;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    border-radius: 0%;
+}
+
+.ok {
+    text-align: center;
+}
+
+.ok button {
+    width: auto;
+    height: auto;
+    background-color: white; 
+    /* border-radius: 10%; */
+    border: none;
+    margin: 0 auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+}

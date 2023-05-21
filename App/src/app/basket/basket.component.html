@@ -1,8 +1,29 @@
-<h3>Koszyk</h3>
-<ng-container class="products-list" *ngFor="let item of cart_items">
+<div class="header">
+    <div>
+        <h2>KOSZYK</h2>
+    </div>
+    <div>
+        <button >HISTORIA ZAKUPÓW</button>
+        <button (click)="basketDialog.show()">NOWY KOSZYK</button>
+    </div>
+</div>
+<div>
+    <dialog #basketDialog>
+        <div class="dialog">
+            <div class="x"><button (click)="basketDialog.close()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="choose">NAZWA KOSZYKA</div>
+            <form (keyup)="onKey(basketName.value)">
+                <input type="text" #basketName value="" placeholder="type new name...">
+            </form>
+            <div class="ok">
+                <button (click)="addBasket(); basketDialog.close()">OK</button>
+            </div>
+        </div>
+    </dialog>
+</div>
+<!-- <ng-container class="products-list" *ngFor="let item of cart_items">
     <div class="product">
         <div>
-            <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Colourful_shopping_carts.jpg/1200px-Colourful_shopping_carts.jpg" alt="trolly"> -->
             <img src={{item.product[0].image}} alt="product">
         </div>
         <div>
@@ -13,8 +34,34 @@
         </div> 
         <div>
             <button>KUP</button>
+            <button><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
+</ng-container> -->
+<ng-container *ngFor="let basket of user[0].baskets">
+    <h3 class="basket_name">{{ basket.basket }}</h3>
+    <button class="trash" (click)="deleteBasket(basket.basket)"><i class="fa-solid fa-trash"></i></button>
+    <ng-container *ngFor="let product of basket.products">
+        <div class="product">
+            <div>
+                <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Colourful_shopping_carts.jpg/1200px-Colourful_shopping_carts.jpg" alt="trolly"> -->
+                <img src={{product.image}} alt="product">
+            </div>
+            <div>
+                {{ product.name }} <br>
+                Ilość: {{ product.quantity }} <br>
+                Cena: {{ product.price }} <br>
+                Razem: {{ product.price * product.quantity }}
+            </div> 
+            <div>
+                <button>KUP</button>
+                <button (click)="deleteBasketProduct(basket.basket, product.product_id)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </ng-container>
 </ng-container>
+<br>
+<br>
+
 
 

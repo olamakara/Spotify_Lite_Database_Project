@@ -47,3 +47,76 @@ button:hover {
 img {
     height: 100px;
 }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+dialog {
+    top: 40%;
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choose {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.x {
+    text-align: end;
+}
+
+.x button {
+    margin: 0;
+    border: none;
+    background-color: white;
+    width: auto;
+    height: auto;
+    font-size: 1.1rem;
+}
+
+.ok {
+    text-align: center;
+}
+
+.ok button {
+    width: auto;
+    height: auto;
+    background-color: white; 
+    /* border-radius: 10%; */
+    border: none;
+    margin: 20px auto 0 auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: 'Oswald', sans-serif;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+.basket_name {
+    display: inline;
+}
+
+.trash {
+    margin-left: 10px;
+    border: none;
+    background-color: white;
+    width: auto;
+    height: auto;
+}
