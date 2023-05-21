@@ -339,6 +339,69 @@ app.get('/users/:id', async (req, res) => {
   }
 });
 
+app.put('/buy_product', async (req, res) => {
+  console.log("buy product");
+  const customer_id = req.body.customer_id;
+  const price = req.body.price * req.body.quantity;
+  const basket = req.body.basket;
+  const new_product = {
+    product_id: req.body.product_id,
+    name: req.body.name,
+    seller_id: req.body.seller_id,
+    quantity: req.body.quantity,
+    price: req.body.price
+  }
+
+  const newOrder = {
+    customer_id: customer_id,
+    products: [new_product],
+    price: price
+  }
+  
+  // const update = { $set: {"quantity": req.body.quantity} };
+
+  try {
+    await client.connect();
+    const productsCollection = client.db("OnlineShop").collection("products");
+    const ordersCollection = client.db("OnlineShop").collection("orders");
+    const usersCollection = client.db("OnlineShop").collection("users");
+
+    // check whether can buy or not
+    const product = await productsCollection.find({_id: new ObjectId(new_product.product_id)}).toArray();
+    const diff = parseFloat(product[0].quantity) - parseFloat(new_product.quantity);
+    if (diff < 0) {
+      res.json(-1);
+      return;
+    }
+    console.log(diff);
+    console.log(product[0].quantity);
+    console.log(new_product.quantity);
+
+    // delete quantity from products
+    const result = await productsCollection.updateOne({ _id: new ObjectId(new_product.product_id) }, { $set: {"quantity": diff} });
+    if (result.modifiedCount === 1) {
+      res.json({ message: 'Product updated successfully.' });
+    } else {
+      res.status(404).json({ error: 'Product not found.' });
+    }
+
+    // delete from user basket
+    const filter = {_id: new ObjectId(customer_id), "baskets.basket": basket};
+    const update = {$pull: {"baskets.$.products": {product_id: new ObjectId(new_product.product_id)}}};
+    const del_bas = await usersCollection.updateOne(filter, update);
+    console.log(`${del_bas.modifiedCount} document(s) updated`);
+
+    // add to orders
+    const add_ord = await ordersCollection.insertOne(newOrder);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to update product.' });
+  } finally {
+    await client.close();
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

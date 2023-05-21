@@ -52,7 +52,7 @@ span {
 }
 
 dialog {
-    top: 40%;
+    top: 30%;
 }
 
 .dialog {
@@ -63,7 +63,8 @@ dialog {
 
 .choose {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .x {
@@ -107,4 +108,10 @@ dialog {
     margin: 0 auto;
     font-family: 'Oswald', sans-serif;
     font-size: 1.2rem;
+}
+
+.attention {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
 }

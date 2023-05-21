@@ -18,6 +18,8 @@ export class BasketComponent implements OnInit {
 
   newBasketName: string = "";
 
+  basketAlert: string = "";
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -69,4 +71,24 @@ export class BasketComponent implements OnInit {
       this.user = data;
     });
   }
+
+  buyProduct(product: any, basket: string) {
+    const info = {
+      customer_id: this.user_id,
+      product_id: product.product_id,
+      basket: basket,
+      quantity: product.quantity,
+      seller_id: product.seller_id,
+      name: product.name,
+      price: product.price
+    }
+    this.http.put(`http://localhost:3000/buy_product`, info).subscribe(res => {
+      if (res == -1) {
+        this.basketAlert = "Nie można kupić produktu."
+      } else {
+        this.basketAlert = '';
+      }
+    });
+  }
+
 }
