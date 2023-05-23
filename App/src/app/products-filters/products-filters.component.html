@@ -1,1 +1,20 @@
-<p>products-filters works!</p>
+<div>
+    <form class="form">
+        <div>
+            <label for="name">Nazwa</label>
+            <input (keyup)="setName(name.value)" #name type="text" name="name">
+        </div>
+        <div>
+            <label for="category">Kategoria</label>
+            <input type="text" name="category">
+        </div>
+        <div>
+            <label for="min-price">min cena</label>
+            <input type="text" name="min-price">
+        </div>
+        <div>
+            <label for="max-price">max cena</label>
+            <input type="text" name="max-price">
+        </div>
+    </form>
+</div>

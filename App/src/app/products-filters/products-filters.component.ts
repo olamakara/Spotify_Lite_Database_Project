@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class ProductsFiltersComponent {
 
+  filterName: string = "";
+
+  filterCategory: string = "";
+
+  filterMinPrice: string = "";
+
+  filterMaxPrice: string = "";
+
+  setName(name: string) {
+    this.filterName = name;
+  }
+
 }

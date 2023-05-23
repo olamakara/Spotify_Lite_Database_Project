@@ -15,10 +15,64 @@ export class AllProductsComponent implements OnInit {
   user: any;
   currentBasket: string = "";
   numProducts: number = 0;
-  cart_id: string = "645b8a9fe6098e3d10e1aec2";
+  // cart_id: string = "645b8a9fe6098e3d10e1aec2";
   user_id: string = "6463e6e93b305948b58fc23f";
 
+  filterName: string = "";
+  // name: boolean = false;
+
+  filterCategory: string = "";
+
+  filterMinPrice: number = 0
+
+  filterMaxPrice: number = Infinity;
+
   constructor(private http: HttpClient) { }
+
+  setName(name: string) {
+    this.filterName = name;
+  }
+
+  ifName(name: string) {
+    if (name === this.filterName || this.filterName === "") {
+      return true;
+    }
+    return false;
+  }
+
+  setCategory(category: string) {
+    this.filterCategory = category;
+  }
+
+  ifCategory(category: string) {
+    if (category === this.filterCategory || this.filterCategory === "") {
+      return true;
+    }
+    return false;
+  }
+
+  setMinPrice(price: string) {
+    if (price === "") {
+      this.filterMinPrice = 0;
+    } else {
+      this.filterMinPrice = parseFloat(price);
+    }
+  }
+
+  setMaxPrice(price: string) {
+    if (price === "") {
+      this.filterMaxPrice = Infinity;
+    } else {
+      this.filterMaxPrice = parseFloat(price);
+    }
+  }
+
+  ifPrice(price: number) {
+    if (price >= this.filterMinPrice && price <= this.filterMaxPrice) {
+      return true;
+    }
+    return false;
+  }
 
   ngOnInit() {
     // this.getProducts();
@@ -72,31 +126,31 @@ export class AllProductsComponent implements OnInit {
     this.table[idx]--;
   }
 
-  updateQuantity(id: string, qty: number) {
-    const updatedProduct = {
-      _id: id,  // tego nie potrzebuje raczej
-      quantity: qty
-    };
-    this.http.put(`http://localhost:3000/products/${id}`, updatedProduct).subscribe(() => {
-      if (qty > 0) {
-        this.addToCart(this.cart_id, id);
-      } else {
-        this.getProducts();
-      }
-    });
-  }
+  // updateQuantity(id: string, qty: number) {
+  //   const updatedProduct = {
+  //     _id: id,  // tego nie potrzebuje raczej
+  //     quantity: qty
+  //   };
+  //   this.http.put(`http://localhost:3000/products/${id}`, updatedProduct).subscribe(() => {
+  //     if (qty > 0) {
+  //       this.addToCart(this.cart_id, id);
+  //     } else {
+  //       this.getProducts();
+  //     }
+  //   });
+  // }
 
-  addToCart(cart_id: string, product_id: string) {
-    const newCartItem = {
-      cart_id: cart_id,
-      product_id: product_id,
-      quantity: 1  
-    };
-    this.http.post('http://localhost:3000/cart_item', newCartItem).subscribe(data => {
+  // addToCart(cart_id: string, product_id: string) {
+  //   const newCartItem = {
+  //     cart_id: cart_id,
+  //     product_id: product_id,
+  //     quantity: 1  
+  //   };
+  //   this.http.post('http://localhost:3000/cart_item', newCartItem).subscribe(data => {
       
-    });
-    this.getProducts();
-  }
+  //   });
+  //   this.getProducts();
+  // }
 
   setBasket(basket: string) {
     this.currentBasket = basket;

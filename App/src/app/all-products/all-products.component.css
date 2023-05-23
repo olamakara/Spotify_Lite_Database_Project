@@ -115,3 +115,14 @@ dialog {
     font-size: 0.9rem;
     text-align: center;
 }
+
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form div {
+    display: flex;
+    flex-direction: column;
+}

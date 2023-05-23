@@ -380,7 +380,7 @@ app.put('/buy_product', async (req, res) => {
     // delete quantity from products
     const result = await productsCollection.updateOne({ _id: new ObjectId(new_product.product_id) }, { $set: {"quantity": diff} });
     if (result.modifiedCount === 1) {
-      res.json({ message: 'Product updated successfully.' });
+      // res.json({ message: 'Product updated successfully.' });
     } else {
       res.status(404).json({ error: 'Product not found.' });
     }
@@ -393,6 +393,10 @@ app.put('/buy_product', async (req, res) => {
 
     // add to orders
     const add_ord = await ordersCollection.insertOne(newOrder);
+
+    const user = await client.db("OnlineShop").collection("users").find({_id: new ObjectId(customer_id)}).toArray();
+    console.log(user);
+    res.json(user);
 
   } catch (err) {
     console.log(err);
