@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import '../polyfill';
 import { CustomersListComponent } from './customers-list/customers-list.component';
-import { ProductsFiltersComponent } from './products-filters/products-filters.component'
+import { ProductsFiltersComponent } from './products-filters/products-filters.component';
+import { ProductInfoComponent } from './product-info/product-info.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductsFiltersComponent } from './products-filters/products-filters.co
     PageNotFoundComponent,
     UserInfoComponent,
     CustomersListComponent,
-    ProductsFiltersComponent
+    ProductsFiltersComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,

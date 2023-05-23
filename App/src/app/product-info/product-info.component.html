@@ -1,0 +1,58 @@
+<div *ngIf='!product'>
+  <div class='loader'></div>
+</div>
+
+<div *ngIf='product' class='product' [style.opacity]='product.quantity < 1 ? 0.5 : 1'>
+  <div class='image'>
+    <img alt='product-image' src='{{product.image}}'>
+  </div>
+  <div>
+    <p class='title'>{{ product.name }}</p>
+    <p class='description'>{{ product.description }}</p>
+    <p class='description-field'><span class='description-field-header'>Kategoria:</span> {{ product.category }}</p>
+    <p class='description-field'><span class='description-field-header'>Ilość:</span> {{ product.quantity }}</p>
+    <p class='description-field'><span class='description-field-header'>Cena:</span> {{ product.price }} zł</p>
+    <!--    <p class='description'><span class='description-header'>Sprzedawca:</span> {{ product.seller_id }} zł</p>-->
+  </div>
+
+  <div class='actions'>
+    <button (click)='increaseInBasket()' [disabled]='product.quantity <= 0 || inBasketCount >= product.quantity'
+            class='icon-button'><i
+      class='fa-solid fa-plus'></i></button>
+    <span class='counter'>{{inBasketCount}}</span>
+    <button (click)='decreaseInBasket()'
+            [disabled]='product.quantity <= 0 || inBasketCount <= 0'
+            class='icon-button'>
+      <i class='fa-solid fa-minus'></i>
+    </button>
+    <button (click)='basketDialog.show()' class='icon-button'><i class='fa-solid fa-cart-shopping'></i></button>
+  </div>
+
+  <dialog #basketDialog>
+    <div class='dialog-wrapper'>
+      <div class='dialog-cancel'>
+        <button (click)='basketDialog.close()'><i class='fa-solid fa-xmark'></i></button>
+      </div>
+
+      <p class='dialog-title'>WYBIERZ KOSZYK</p>
+      <p class='dialog-description'>Uwaga! Produkty dodawane do koszyka nie są objęte rezerwacją.</p>
+
+      <div *ngIf='userBaskets.length > 0; else noBaskets' class='baskets'>
+        <ng-container *ngFor='let basket of userBaskets'>
+          <button
+            [style.background-color]="selectedBasketName === basket.basket ? '#FFD3B0' : 'white'"
+            (click)='selectBasket(basket.basket)'
+            class='basket'
+          >
+            {{ basket.basket }}
+          </button>
+        </ng-container>
+      </div>
+      <ng-template #noBaskets>Brak utworzonych koszyków :(</ng-template>
+
+      <div class='dialog-confirm'>
+        <button (click)='saveToBasket(); basketDialog.close()'>OK</button>
+      </div>
+    </div>
+  </dialog>
+</div>

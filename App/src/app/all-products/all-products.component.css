@@ -1,64 +1,70 @@
 .product {
-    display: flex;
-    height: 100px;
-    margin: 40px 0;
-    background-color: beige;
-    border-radius: 20px;
-    padding: 20px 50px;
-    justify-content: space-between;
-    align-items: center;
-    animation: smallerr 0.5s forwards;
+  display: flex;
+  height: 100px;
+  margin: 40px 0;
+  background-color: beige;
+  border-radius: 20px;
+  padding: 20px 50px;
+  justify-content: space-between;
+  align-items: center;
+  animation: smallerr 0.5s forwards;
 }
 
 .product:hover {
-    background-color: bisque;
-    height: 60px;
-    border-radius: 25px;
-    cursor: pointer;
-    animation: bigger 0.5s forwards;
+  background-color: bisque;
+  height: 60px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 300ms;
+  transform: scale(1.02);
+  /*animation: bigger 0.5s forwards;*/
 }
 
-@keyframes bigger {
-    from {height: 100px;}
-    to {height: 130px}
-}
+/*@keyframes bigger {*/
+/*    from {height: 100px;}*/
+/*    to {height: 130px}*/
+/*}*/
 
 @keyframes smallerr {
-    from {height: 130px;}
-    to {height: 100px;}
+  from {
+    height: 130px;
+  }
+  to {
+    height: 100px;
+  }
 }
 
 button {
-    border: 1px solid #FC4F00;
-    color: #FC4F00;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-right: 10px;
+  border: 1px solid #fc4f00;
+  color: #fc4f00;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 button:hover {
-    /* border: none; */
-    background-color: beige;
+  /* border: none; */
+  background-color: beige;
 }
 
 img {
-    height: 100px;
+  height: 100px;
 }
 
 span {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 dialog {
     top: 30%;
 }
 
-.dialog {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .choose {
@@ -68,46 +74,46 @@ dialog {
 }
 
 .x {
-    text-align: end;
+  text-align: end;
 }
 
 .x button {
-    margin: 0;
-    border: none;
-    background-color: white;
-    width: auto;
-    height: auto;
-    font-size: 1.1rem;
+  margin: 0;
+  border: none;
+  background-color: white;
+  width: auto;
+  height: auto;
+  font-size: 1.1rem;
 }
 
 .baskets {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .baskets button {
-    width: 100%;
-    background-color: white;
-    border: 2px solid #FC4F00;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.1rem;
-    border-radius: 0%;
+  width: 100%;
+  background-color: white;
+  border: 2px solid #fc4f00;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  border-radius: 0%;
 }
 
 .ok {
-    text-align: center;
+  text-align: center;
 }
 
 .ok button {
-    width: auto;
-    height: auto;
-    background-color: white; 
-    /* border-radius: 10%; */
-    border: none;
-    margin: 0 auto;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
+  width: auto;
+  height: auto;
+  background-color: white;
+  /* border-radius: 10%; */
+  border: none;
+  margin: 0 auto;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
 }
 
 .attention {
