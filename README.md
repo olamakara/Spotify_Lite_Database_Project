@@ -17,4 +17,4 @@ ORM -
 GUI - Angular
 
 ## Opis aplikacji
-Aplikacja będzie sklepem internetowym do sprzedawania i kupowania towarów. Będzie wspierała logowanie się na swoje konto, możliwość sprawdzenia sowich kupionych i sprzedawanych przedmiotów. Dla użytkowników dostępny będzie ogólny market wszystkich przedmiotów oraz możliwość sortowania ich po kategoriach.
+Aplikacja będzie sklepem internetowym do sprzedawania i kupowania towarów. Będzie wspierała logowanie się na swoje konto, możliwość sprawdzenia swoich kupionych i sprzedawanych przedmiotów. Dla użytkowników dostępny będzie ogólny market wszystkich przedmiotów oraz możliwość sortowania ich po kategoriach.

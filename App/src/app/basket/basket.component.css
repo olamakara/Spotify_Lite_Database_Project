@@ -15,13 +15,15 @@
     height: 60px;
     border-radius: 25px;
     cursor: pointer;
-    animation: bigger 0.5s forwards;
+    transition: transform 300ms;
+    transform: scale(1.02);
+    /*animation: bigger 0.5s forwards;*/
 }
 
-@keyframes bigger {
-    from {height: 100px;}
-    to {height: 130px}
-}
+/*@keyframes bigger {*/
+/*    from {height: 100px;}*/
+/*    to {height: 130px}*/
+/*}*/
 
 @keyframes smallerr {
     from {height: 130px;}
@@ -59,7 +61,7 @@ dialog {
     top: 40%;
 }
 
-.dialog {
+.dialog-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -91,7 +93,7 @@ dialog {
 .ok button {
     width: auto;
     height: auto;
-    background-color: white; 
+    background-color: white;
     /* border-radius: 10%; */
     border: none;
     margin: 20px auto 0 auto;
@@ -120,3 +122,27 @@ input[type=text]:focus {
     width: auto;
     height: auto;
 }
+
+.alert {
+    border: 3px solid #E74646;
+    margin: 20px auto 0 auto;
+    background-color: #FFAFAF;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    text-align: center;
+    border-radius: 17px;
+}
+
+.alert-text {
+    font-size: 1.1rem;
+    font-weight: lighter;
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.alert-content {
+    align-items: center;
+}
+

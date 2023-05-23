@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {ProductID} from '../model/product';
 
 @Component({
   selector: 'app-basket',
@@ -18,7 +20,9 @@ export class BasketComponent implements OnInit {
 
   newBasketName: string = "";
 
-  constructor(private http: HttpClient) { }
+  basketAlert: string = "";
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     // this.getCartItems();
@@ -68,5 +72,29 @@ export class BasketComponent implements OnInit {
     this.http.put(`http://localhost:3000/del_basket`, info).subscribe(data => {
       this.user = data;
     });
+  }
+
+  buyProduct(product: any, basket: string) {
+    const info = {
+      customer_id: this.user_id,
+      product_id: product.product_id,
+      basket: basket,
+      quantity: product.quantity,
+      seller_id: product.seller_id,
+      name: product.name,
+      price: product.price
+    }
+    this.http.put(`http://localhost:3000/buy_product`, info).subscribe(res => {
+      if (res == -1) {
+        this.basketAlert = "Nie można kupić produktu."
+      } else {
+        this.basketAlert = '';
+      }
+    });
+  }
+
+  viewProduct(id: ProductID) {
+    // todo: handle promise error
+    this.router.navigate([`product/${id}`]);
   }
 }

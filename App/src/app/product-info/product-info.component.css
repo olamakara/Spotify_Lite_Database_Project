@@ -1,0 +1,143 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.baskets {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.basket {
+  width: 100%;
+  background-color: white;
+  border: 2px solid #fc4f00;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  border-radius: 0;
+}
+
+.counter {
+  min-width: 25px;
+  font-size: clamp(1rem, -0.875rem + 1.5vw, 1rem);
+  text-align: center;
+  user-select: none;
+}
+
+.description {
+  font-size: clamp(1rem, -0.875rem + 1.5vw, 1rem);
+  margin-bottom: 8px;
+}
+
+.description-field {
+  font-size: clamp(1rem, -0.875rem + 1.5vw, 1rem);
+}
+
+.description-field-header {
+  font-size: clamp(1rem, -0.875rem + 2vw, 1.2rem);
+}
+
+.dialog-cancel {
+  text-align: end;
+}
+
+.dialog-cancel > button {
+  margin: 0;
+  border: none;
+  background-color: white;
+  width: auto;
+  height: auto;
+  font-size: 1.1rem;
+}
+
+.dialog-confirm {
+  text-align: center;
+}
+
+.dialog-confirm > button {
+  width: auto;
+  height: auto;
+  background-color: white;
+  border: none;
+  margin: 0 auto;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+}
+
+.dialog-description {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dialog-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.icon-button {
+  border: 1px solid #fc4f00;
+  color: #fc4f00;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon-button:disabled {
+  opacity: 0.5;
+}
+
+.icon-button:hover:not([disabled]) {
+  opacity: 0.8;
+}
+
+.image {
+  margin-inline: auto;
+}
+
+.loader {
+  box-sizing: border-box;
+  margin: 15vh auto auto;
+  border: 8px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 8px solid #F79540;
+  width: 5vh;
+  height: 5vh;
+  animation: spinner 4s linear infinite;
+}
+
+.product {
+  background-color: beige;
+  border-radius: 20px;
+  margin: 5vh 15vw 15vw;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: bold;
+  font-size: clamp(1rem, -0.875rem + 6vw, 2rem);
+  margin-top: 15px;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

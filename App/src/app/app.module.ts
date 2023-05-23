@@ -10,7 +10,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import '../polyfill';
-import { CustomersListComponent } from './customers-list/customers-list.component'
+import { CustomersListComponent } from './customers-list/customers-list.component';
+import { ProductsFiltersComponent } from './products-filters/products-filters.component';
+import { ProductInfoComponent } from './product-info/product-info.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CustomersListComponent } from './customers-list/customers-list.componen
     BasketComponent,
     PageNotFoundComponent,
     UserInfoComponent,
-    CustomersListComponent
+    CustomersListComponent,
+    ProductsFiltersComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,

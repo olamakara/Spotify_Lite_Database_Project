@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Product, ProductID} from '../model/product';
+
 
 @Component({
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
-  styleUrls: ['./all-products.component.css'],
+  styleUrls: ['./all-products.component.css']
 })
 
 export class AllProductsComponent implements OnInit {
-  
+
   // tableData: any[] = [1, 2, 3, 4, 5, 6, 7];
-  products: any[] = [];
+  products: Product[] = [];
   table: any[] = [];
   user: any;
-  currentBasket: string = "";
+  currentBasket: string = '';
   numProducts: number = 0;
-  cart_id: string = "645b8a9fe6098e3d10e1aec2";
-  user_id: string = "6463e6e93b305948b58fc23f";
+  cart_id: string = '645b8a9fe6098e3d10e1aec2';
+  user_id: string = '6463e6e93b305948b58fc23f';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   ngOnInit() {
     // this.getProducts();
@@ -45,7 +49,7 @@ export class AllProductsComponent implements OnInit {
   }
 
   addToBasket(product: any, idx: number) {
-    if (this.table[idx] == 0 || this.currentBasket == "") {
+    if (this.table[idx] == 0 || this.currentBasket == '') {
       return;
     }
     const newProduct = {
@@ -56,9 +60,9 @@ export class AllProductsComponent implements OnInit {
       image: product.image,
       seller_id: product.seller_id,
       basket_name: this.currentBasket
-    }
+    };
     this.http.put(`http://localhost:3000/users/${this.user_id}`, newProduct).subscribe(() => {
-      
+
     });
     this.table[idx] = 0;
     this.emptyBasket();
@@ -90,10 +94,10 @@ export class AllProductsComponent implements OnInit {
     const newCartItem = {
       cart_id: cart_id,
       product_id: product_id,
-      quantity: 1  
+      quantity: 1
     };
     this.http.post('http://localhost:3000/cart_item', newCartItem).subscribe(data => {
-      
+
     });
     this.getProducts();
   }
@@ -103,7 +107,11 @@ export class AllProductsComponent implements OnInit {
   }
 
   emptyBasket() {
-    this.currentBasket = "";
+    this.currentBasket = '';
   }
 
+  viewProduct(id: ProductID) {
+    // todo: handle promise error
+    this.router.navigate([`product/${id}`]);
+  }
 }
