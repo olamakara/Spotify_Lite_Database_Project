@@ -88,6 +88,7 @@ export class BasketComponent implements OnInit {
       } else {
         this.basketAlert = '';
       }
+      this.user = res;
     });
   }
 
