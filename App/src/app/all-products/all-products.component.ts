@@ -25,7 +25,7 @@ export class AllProductsComponent implements OnInit {
 
   filterMinPrice: number = 0
 
-  filterMaxPrice: number = Infinity;
+  filterMaxPrice: number = 100000000;
 
   constructor(private http: HttpClient) { }
 
@@ -61,7 +61,7 @@ export class AllProductsComponent implements OnInit {
 
   setMaxPrice(price: string) {
     if (price === "") {
-      this.filterMaxPrice = Infinity;
+      this.filterMaxPrice = 100000000;
     } else {
       this.filterMaxPrice = parseFloat(price);
     }
@@ -126,32 +126,6 @@ export class AllProductsComponent implements OnInit {
     this.table[idx]--;
   }
 
-  // updateQuantity(id: string, qty: number) {
-  //   const updatedProduct = {
-  //     _id: id,  // tego nie potrzebuje raczej
-  //     quantity: qty
-  //   };
-  //   this.http.put(`http://localhost:3000/products/${id}`, updatedProduct).subscribe(() => {
-  //     if (qty > 0) {
-  //       this.addToCart(this.cart_id, id);
-  //     } else {
-  //       this.getProducts();
-  //     }
-  //   });
-  // }
-
-  // addToCart(cart_id: string, product_id: string) {
-  //   const newCartItem = {
-  //     cart_id: cart_id,
-  //     product_id: product_id,
-  //     quantity: 1  
-  //   };
-  //   this.http.post('http://localhost:3000/cart_item', newCartItem).subscribe(data => {
-      
-  //   });
-  //   this.getProducts();
-  // }
-
   setBasket(basket: string) {
     this.currentBasket = basket;
   }
@@ -160,4 +134,17 @@ export class AllProductsComponent implements OnInit {
     this.currentBasket = "";
   }
 
+  getFilteredProducts() {
+    const info = {
+      name: this.filterName,
+      category: this.filterCategory,
+      min_price: this.filterMinPrice,
+      max_price: this.filterMaxPrice
+    }
+    this.http.post<any>(`http://localhost:3000/filterproducts`, info).subscribe(data => {
+      this.products = data.products;
+      this.numProducts = data.count;
+      this.table = Array<number>(this.numProducts).fill(0);
+    });
+  }
 }

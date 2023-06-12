@@ -370,9 +370,12 @@ app.put('/buy_product', async (req, res) => {
     const product = await productsCollection.find({_id: new ObjectId(new_product.product_id)}).toArray();
     const diff = parseFloat(product[0].quantity) - parseFloat(new_product.quantity);
     if (diff < 0) {
-      res.json(-1);
-      return;
-    }
+      const ret = -1;
+      const user = await usersCollection.find({_id: new ObjectId(customer_id)}).toArray();
+      console.log(user);
+      res.json({ret, user});
+    } 
+    else {
     console.log(diff);
     console.log(product[0].quantity);
     console.log(new_product.quantity);
@@ -393,14 +396,61 @@ app.put('/buy_product', async (req, res) => {
 
     // add to orders
     const add_ord = await ordersCollection.insertOne(newOrder);
-
-    const user = await client.db("OnlineShop").collection("users").find({_id: new ObjectId(customer_id)}).toArray();
+    
+    const user = await usersCollection.find({_id: new ObjectId(customer_id)}).toArray();
     console.log(user);
-    res.json(user);
+    const ret = 1;
+    res.json({ret, user});
+    }
 
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: 'Failed to update product.' });
+  } finally {
+    await client.close();
+  }
+});
+
+app.post('/filterproducts', async (req, res) => {
+  const name = req.body.name;
+  const category = req.body.category;
+  const min_price = req.body.min_price;
+  const max_price = req.body.max_price;
+  console.log("filters");
+  try {
+    await client.connect();
+    await client.db("OnlineShop").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const productsCollection = client.db("OnlineShop").collection("products");
+
+    if (name && category) {
+      console.log("name and category");
+      filters = {name: name, category: category, price: {$gte: min_price, $lte: max_price}};
+    }
+    else if (category) {
+      console.log("cat");
+      filters = {category: category, price: {$gte: min_price, $lte: max_price}};
+    }
+    else if (name) {
+      console.log("name");
+      filters = {name: name, price: {$gte: min_price, $lte: max_price}};
+    }
+    else {
+      console.log("no");
+      filters = {price: {$gte: min_price, $lte: max_price}};
+    }
+
+    const products = await productsCollection.find(filters).toArray();
+    console.log(products);
+    // const count = await productsCollection.countDocuments();
+    const count = products.length;
+    console.log(count);
+    res.json({products, count});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   } finally {
     await client.close();
   }
