@@ -25,15 +25,8 @@ export class BasketComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    // this.getCartItems();
     this.getUser();
   }
-
-  // getCartItems() {
-  //   this.http.get('http://localhost:3000/cart_item').subscribe(data => {
-  //     this.cart_items = data;
-  //   });
-  // }
 
   getUser() {
     this.http.get(`http://localhost:3000/users/${this.user_id}`).subscribe(data => {
@@ -84,12 +77,13 @@ export class BasketComponent implements OnInit {
       name: product.name,
       price: product.price
     }
-    this.http.put(`http://localhost:3000/buy_product`, info).subscribe(res => {
-      if (res == -1) {
+    this.http.put<any>(`http://localhost:3000/buy_product`, info).subscribe(res => {
+      if (res.ret == -1) {
         this.basketAlert = "Nie można kupić produktu."
       } else {
         this.basketAlert = '';
       }
+      this.user = res.user;
     });
   }
 
