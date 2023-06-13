@@ -8,11 +8,9 @@ Aleksandra Makara
 Piotr Sobczyński
 
 ## Rodzaj bazy
-Oracle PL/SQL
+MongoDB
 
 ## Technologia
-
-ORM - 
 
 GUI - Angular
 
