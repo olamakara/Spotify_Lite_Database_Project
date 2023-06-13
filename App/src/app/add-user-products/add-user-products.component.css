@@ -1,0 +1,48 @@
+.main-container {
+    margin: auto;
+    width: 50%;
+    width: 450px;
+}
+
+.container{
+    padding: 12px;
+    margin: 20px;
+    width: 450px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color: bisque;
+    box-shadow: 0px 0px 12px 1px #000000ff;
+}
+
+h2, p {
+    text-align: center;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    text-align: center;
+}
+
+input {
+    margin: auto;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input.ng-valid{
+    border: 2px solid green;
+}
+
+input.ng-invalid{
+    border: 2px solid red;
+}
+
+.button {
+    align-items: center;
+    text-align: center;
+}

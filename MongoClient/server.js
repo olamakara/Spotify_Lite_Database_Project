@@ -463,6 +463,45 @@ app.put('/add_basket/:id', async (req, res) => {
 	}
 });
 
+app.put('/add_product', async (req, res) => {
+	const user_id = new ObjectId(req.body.user_id);
+	const name = req.body.name;
+	const quantity = parseInt(req.body.quantity);
+	const image = req.body.image;
+	const category = req.body.category;
+	const description = req.body.description;
+	const price = parseInt(req.body.price);
+	const new_product = {
+		name: name,
+		quantity: quantity,
+		image: image,
+		category: category,
+		description: description,
+		seller_id: user_id,
+		price: price
+	};
+
+	try {
+		await client.connect();
+		await client.db("OnlineShop").command({ ping: 1 });
+		console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+		const productsCollection = client.db('OnlineShop').collection('products');
+		const result = await productsCollection.insertOne(new_product);
+		console.log(`A document was inserted with the _id: ${result.insertedId}`);
+
+		// console.log(user);
+
+		// res.json(user);
+
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({error: 'Failed to add new product.'});
+	} finally {
+		await client.close();
+	}
+});
+
 app.get('/users/:id', async (req, res) => {
 	console.log('weszlo');
 	const id = req.params.id;

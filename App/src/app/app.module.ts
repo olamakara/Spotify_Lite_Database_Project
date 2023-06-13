@@ -15,7 +15,9 @@ import { ProductsFiltersComponent } from './products-filters/products-filters.co
 import { PurchasedProductsListComponent } from './purchased-products-list/purchased-products-list.component';
 import { ProductsSoldListComponent } from './products-sold-list/products-sold-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ProductInfoComponent } from './product-info/product-info.component'
+import { ProductInfoComponent } from './product-info/product-info.component';
+import { AddUserProductsComponent } from './add-user-products/add-user-products.component'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,15 @@ import { ProductInfoComponent } from './product-info/product-info.component'
     ProductInfoComponent,
     ProductsFiltersComponent,
     PurchasedProductsListComponent,
-    ProductsSoldListComponent
+    ProductsSoldListComponent,
+    AddUserProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

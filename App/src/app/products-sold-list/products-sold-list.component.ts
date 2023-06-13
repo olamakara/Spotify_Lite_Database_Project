@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from "@angular/material";
 
 @Component({
   selector: 'app-products-sold-list',
@@ -13,7 +12,7 @@ export class ProductsSoldListComponent implements OnInit {
 
   user_id: string = "6463e9f01e07984af0f036dc";
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getProducts();

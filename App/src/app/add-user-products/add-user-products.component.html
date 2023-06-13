@@ -1,0 +1,34 @@
+<div class="main-container">
+    <div class="container">
+        <h2>Dodaj produkt</h2>
+        <form [formGroup]="new_product">
+            <div class="form-group">
+                <label>Nazwa</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Ilość</label>
+                <input type="text" class="form-control" formControlName="quantity">
+            </div>
+            <div class="form-group">
+                <label>Link do zdjęcia</label>
+                <input type="text" class="form-control" formControlName="image">
+            </div>
+            <div class="form-group">
+                <label>Kategoria</label>
+                <input type="text" class="form-control" formControlName="category">
+            </div>
+            <div class="form-group">
+                <label>Opis</label>
+                <input type="text" class="form-control" formControlName="description">
+            </div>
+            <div class="form-group">
+                <label>Cena</label>
+                <input type="text" class="form-control" formControlName="price">
+            </div>
+            <button type="submit" (click)="addProduct()">Send</button>
+            <p *ngIf="showError">Wprowadź poprawne dane!</p>
+            <p *ngIf="showOk">Poprawnie dodano produkt!</p>
+        </form>   
+    </div>
+</div>

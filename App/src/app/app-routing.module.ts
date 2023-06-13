@@ -7,6 +7,7 @@ import {ProductInfoComponent} from './product-info/product-info.component';
 import {UserInfoComponent} from './user-info/user-info.component';
 import { PurchasedProductsListComponent } from './purchased-products-list/purchased-products-list.component';
 import { ProductsSoldListComponent } from './products-sold-list/products-sold-list.component';
+import { AddUserProductsComponent } from './add-user-products/add-user-products.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'product/:id', component: ProductInfoComponent},
   {path: 'user-purchased', component: PurchasedProductsListComponent },
   {path: 'user-sold', component: ProductsSoldListComponent },
+  {path: 'add-product', component: AddUserProductsComponent },
   {path: '', redirectTo: '/start', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];
