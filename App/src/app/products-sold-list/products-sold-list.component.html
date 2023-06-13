@@ -1,0 +1,22 @@
+<div class="header">
+    <div>
+        <h2>SPRZEDAWANE PRODUKTY</h2>
+    </div>
+</div>
+
+<ng-container *ngFor="let product of products.products">
+    <div class="product">
+        <div>
+            {{ product.name }} <br>
+            Ilość: {{ product.quantity }} <br>
+            Cena: {{ product.price }} <br>
+            <br>
+        </div> 
+        <div>
+            <button (click)="editProduct(product._id)">Edytuj</button>
+            <button (click)="deleteProduct(product._id)">Usuń</button>
+        </div>
+    </div>
+</ng-container>
+<br>
+<br>

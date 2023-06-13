@@ -1,8 +1,27 @@
 <div class="user-info">
-    <div><img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="user-img"></div>
-    <div class="info">
-        <div>Imię i Nazwisko</div>
-        <div>email</div>
-        <div>telefon</div>
+    <div class="parent">
+        <div class="div1">
+            <div><img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="user-img"></div>
+            <div class="info">
+                <div>Imię i Nazwisko: {{ user[0].name }}</div>
+                <div>ID: {{ user[0]._id }}</div>
+            </div>
+        </div>
+        <div>
+
+            <a class="dropbtn" routerLink="/user-purchased" routerLinkActive="active"> 
+                <button>Kupione produkty</button>
+            </a>
+            <a class="dropbtn" routerLink="/user-sold" routerLinkActive="active"> 
+                <button>Sprzedawane produkty</button>
+            </a>
+        </div>
+
+        <!-- <div class="div2">
+            <app-purchased-products-list></app-purchased-products-list>     
+        </div>
+        <div class="div3">
+            <app-products-sold-list></app-products-sold-list>
+        </div> -->
     </div>
 </div>
