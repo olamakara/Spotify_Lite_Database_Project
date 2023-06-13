@@ -1,0 +1,22 @@
+<div class="header">
+    <div>
+        <h2>KUPIONE PRODUKTY</h2>
+    </div>
+</div>
+{{ orders.count }}
+
+<ng-container *ngFor="let order of orders.products">
+    <ng-container *ngFor="let product of order.products">
+        <div class="product">
+            <div>
+                {{ product.name }} <br>
+                Ilość: {{ product.quantity }} <br>
+                Cena: {{ product.price }} <br>
+                Razem: {{ product.price * product.quantity }}<br>
+                <br>
+            </div> 
+        </div>
+    </ng-container>
+</ng-container>
+<br>
+<br>
