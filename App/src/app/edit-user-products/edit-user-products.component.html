@@ -1,0 +1,36 @@
+<div class="main-container">
+    <div class="container">
+        <h2>Edytuj produkt</h2>
+        
+        <form [formGroup]="edit_product">
+            <div class="form-group">
+                <label>Nazwa</label>
+                <input type="text" id="name" [ngModel]="product.name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Ilość</label>
+                <input type="text" id="quantity" [ngModel]="product.quantity" formControlName="quantity">
+            </div>
+            <div class="form-group">
+                <label>Link do zdjęcia</label>
+                <input type="text" id="image" [ngModel]="product.image" formControlName="image">
+            </div>
+            <div class="form-group">
+                <label>Kategoria</label>
+                <input type="text" id="category" [ngModel]="product.category" formControlName="category">
+            </div>
+            <div class="form-group">
+                <label>Opis</label>
+                <input type="text" id="description" [ngModel]="product.description" formControlName="description">
+            </div>
+            <div class="form-group">
+                <label>Cena</label>
+                <input type="text" id="price" [ngModel]="product.price" formControlName="price">
+            </div>
+            <button type="submit" (click)="editProduct()">Send</button> 
+            <p *ngIf="showError">Wprowadź poprawne dane!</p>
+            <p *ngIf="showOk">Poprawnie zmodyfikowano produkt!</p>
+        </form>   
+    </div>
+    
+</div>

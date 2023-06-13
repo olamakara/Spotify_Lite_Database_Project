@@ -24,9 +24,6 @@ export class ProductsSoldListComponent implements OnInit {
     })
   }
 
-  editProduct(product_id) {
-  }
-
   deleteProduct(product_id) {
     const info = {
       product_id: product_id,
