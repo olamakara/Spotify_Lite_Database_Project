@@ -16,7 +16,9 @@
             <br>
         </div> 
         <div>
-            <button (click)="editProduct(product._id)">Edytuj</button>
+            <a class="dropbtn" routerLink="/edit-product/{{ product._id }}" routerLinkActive="active"> 
+                <button>Edytuj</button>
+            </a>
             <button (click)="deleteProduct(product._id)">Usuń</button>
         </div>
     </div>
