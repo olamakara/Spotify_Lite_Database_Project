@@ -14,10 +14,10 @@ const routes: Routes = [
   {path: 'basket', component: BasketComponent},
   {path: 'user-info', component: UserInfoComponent},
   {path: 'product/:id', component: ProductInfoComponent},
+  {path: 'user-purchased', component: PurchasedProductsListComponent },
+  {path: 'user-sold', component: ProductsSoldListComponent },
   {path: '', redirectTo: '/start', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent}
-  { path: 'user-sold', component: ProductsSoldListComponent },
-  { path: 'user-purchased', component: PurchasedProductsListComponent },
+  {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({

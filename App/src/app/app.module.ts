@@ -26,7 +26,7 @@ import { ProductInfoComponent } from './product-info/product-info.component'
     PageNotFoundComponent,
     UserInfoComponent,
     CustomersListComponent,
-    ProductInfoComponent
+    ProductInfoComponent,
     ProductsFiltersComponent,
     PurchasedProductsListComponent,
     ProductsSoldListComponent

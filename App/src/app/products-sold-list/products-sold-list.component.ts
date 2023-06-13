@@ -39,18 +39,4 @@ export class ProductsSoldListComponent implements OnInit {
     });
   }
 
-  openEditDialog(product_id) {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-    };
-
-    this.dialog.open(EditDialogComponent, dialogConfig);
-  }
-
 }
