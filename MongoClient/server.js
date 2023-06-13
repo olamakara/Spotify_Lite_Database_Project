@@ -102,6 +102,77 @@ app.get('/products/:user_id', async (req, res) => {
   }
 });
 
+app.get('/products_sold/:user_id', async (req, res) => {
+  const user_id = req.params.user_id;
+  try {
+    await client.connect();
+    await client.db("OnlineShop").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const productsCollection = client.db("OnlineShop").collection("products");
+    const products = await productsCollection.find({$and: [{seller_id: new ObjectId(user_id)}, {quantity: {$gt: 0}}]}).toArray();
+    
+    console.log(products);
+    res.json({products});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
+app.get('/orders', async (req, res) => {
+  const user_id = req.params.user_id;
+
+  try {
+    await client.connect();
+    await client.db("OnlineShop").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const ordersCollection = client.db("OnlineShop").collection("orders");
+    const orders = await ordersCollection.find().toArray();
+    const count = await ordersCollection.countDocuments();
+    
+    console.log(orders);
+    console.log(count);
+
+    res.json({products: orders, count});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
+app.get('/orders/:user_id', async (req, res) => {
+  const user_id = req.params.user_id;
+
+  try {
+    await client.connect();
+    await client.db("OnlineShop").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const ordersCollection = client.db("OnlineShop").collection("orders");
+    const orders = await ordersCollection.find({customer_id: user_id}).toArray();
+    const count = await ordersCollection.countDocuments();
+    
+    console.log(orders);
+    console.log(count);
+
+    res.json({products: orders, count});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
 app.get('/cart_item', async (req, res) => {
   try {
     await client.connect();
@@ -261,6 +332,34 @@ app.put('/del_product/:basket', async (req, res) => {
   }
 });
 
+app.put('/del_user_product/', async (req, res) => {
+  const product_id = req.body.product_id;
+  const user_id = req.body.user_id;
+
+  try {
+    await client.connect();
+   
+    const productsCollection = client.db("OnlineShop").collection("products");
+    const result = await productsCollection.deleteOne({_id: new ObjectId(product_id)});
+    console.log(`${result.deletedCount} document(s) updated`);
+
+    const products = await productsCollection.find({$and: [{seller_id: new ObjectId(user_id)}, {quantity: {$gt: 0}}]}).toArray();
+    
+    console.log(products);
+    res.json({products})
+    // const user = await productsCollection.find({"_id": new ObjectId(product_id)}).toArray();
+    // console.log(user);
+
+    // res.json(pre_counter, post_counter);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to remove product from products.' });
+  } finally {
+    await client.close();
+  }
+});
+
 app.put('/del_basket', async (req, res) => {
   console.log("delete basket");
   const user_id = req.body.user_id;
@@ -320,7 +419,6 @@ app.put('/add_basket/:id', async (req, res) => {
 });
 
 app.get('/users/:id', async (req, res) => {
-  console.log("weszlo");
   const id = req.params.id;
 
   try {

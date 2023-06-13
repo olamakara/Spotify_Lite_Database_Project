@@ -1,0 +1,37 @@
+<div class="header">
+    <div>
+        <h2>SPRZEDAWANE PRODUKTY</h2>
+    </div>
+</div>
+
+<div>
+    <dialog #basketDialog>
+        <div class="dialog">
+            <div class="x"><button (click)="basketDialog.close()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="choose">NAZWA KOSZYKA</div>
+            <form (keyup)="onKey(basketName.value)">
+                <input type="text" #basketName value="" placeholder="type new name...">
+            </form>
+            <div class="ok">
+                <button (click)="addBasket(); basketDialog.close()">OK</button>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<ng-container *ngFor="let product of products.products">
+    <div class="product">
+        <div>
+            {{ product.name }} <br>
+            Ilość: {{ product.quantity }} <br>
+            Cena: {{ product.price }} <br>
+            <br>
+        </div> 
+        <div>
+            <button (click)="editProduct(product._id)">Edytuj</button>
+            <button (click)="deleteProduct(product._id)">Usuń</button>
+        </div>
+    </div>
+</ng-container>
+<br>
+<br>

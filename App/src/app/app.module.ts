@@ -11,7 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import '../polyfill';
 import { CustomersListComponent } from './customers-list/customers-list.component';
-import { ProductsFiltersComponent } from './products-filters/products-filters.component'
+import { ProductsFiltersComponent } from './products-filters/products-filters.component';
+import { PurchasedProductsListComponent } from './purchased-products-list/purchased-products-list.component';
+import { ProductsSoldListComponent } from './products-sold-list/products-sold-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -22,12 +25,15 @@ import { ProductsFiltersComponent } from './products-filters/products-filters.co
     PageNotFoundComponent,
     UserInfoComponent,
     CustomersListComponent,
-    ProductsFiltersComponent
+    ProductsFiltersComponent,
+    PurchasedProductsListComponent,
+    ProductsSoldListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BasketComponent } from './basket/basket.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { PurchasedProductsListComponent } from './purchased-products-list/purchased-products-list.component';
+import { ProductsSoldListComponent } from './products-sold-list/products-sold-list.component';
 
 const routes: Routes = [
   { path: 'start', component: AllProductsComponent },
   { path: 'basket', component: BasketComponent },
   { path: 'user-info', component: UserInfoComponent },
+  { path: 'user-purchased', component: PurchasedProductsListComponent },
+  { path: 'user-sold', component: ProductsSoldListComponent },
   { path: '', redirectTo: '/start', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent } 
 ];
